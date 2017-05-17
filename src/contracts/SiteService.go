@@ -7,7 +7,7 @@ import (
 	"github.com/fiorix/wsdl2go/soap"
 )
 
-//http://int-api.mindbodyonline.com/0_5/SiteService.asmx?wsdl
+//https://api.mindbodyonline.com/0_5/SiteService.asmx?wsdl
 
 // Namespace was auto-generated from WSDL.
 var Namespace = "http://clients.mindbodyonline.com/api/0_5"
