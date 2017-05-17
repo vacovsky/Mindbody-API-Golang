@@ -1,4 +1,4 @@
-package mboapicontracts
+package site_x0020_servicesoap
 
 import (
 	"encoding/xml"
@@ -7,54 +7,52 @@ import (
 	"github.com/fiorix/wsdl2go/soap"
 )
 
-//https://api.mindbodyonline.com/0_5/SiteService.asmx?wsdl
-
 // Namespace was auto-generated from WSDL.
 var Namespace = "http://clients.mindbodyonline.com/api/0_5"
 
-// NewSite_ServiceSoap creates an initializes a Site_ServiceSoap.
-func NewSite_ServiceSoap(cli *soap.Client) Site_ServiceSoap {
-	return &site_ServiceSoap{cli}
+// NewSite_x0020_ServiceSoap creates an initializes a Site_x0020_ServiceSoap.
+func NewSite_x0020_ServiceSoap(cli *soap.Client) Site_x0020_ServiceSoap {
+	return &site_x0020_ServiceSoap{cli}
 }
 
-// Site_ServiceSoap was auto-generated from WSDL
+// Site_x0020_ServiceSoap was auto-generated from WSDL
 // and defines interface for the remote service. Useful for testing.
-type Site_ServiceSoap interface {
+type Site_x0020_ServiceSoap interface {
 	// Gets an activation code.
-	GetActivationCode(s *GetActivationCode) (r *GetActivationCodeResponse, err error)
+	GetActivationCode(α *GetActivationCode) (β *GetActivationCodeResponse, err error)
 
 	// Gets a list of prospect stages for a site.
-	GetGenders(s *GetGenders) (r *GetGendersResponse, err error)
+	GetGenders(α *GetGenders) (β *GetGendersResponse, err error)
 
 	// Gets a list of locations.
-	GetLocations(s *GetLocations) (r *GetLocationsResponse, err error)
+	GetLocations(α *GetLocations) (β *GetLocationsResponse, err error)
 
 	// Gets a list of active mobile providers.
-	GetMobileProviders(s *GetMobileProviders) (r *GetMobileProvidersResponse, err error)
+	GetMobileProviders(α *GetMobileProviders) (β *GetMobileProvidersResponse, err error)
 
 	// Gets a list of programs.
-	GetPrograms(s *GetPrograms) (r *GetProgramsResponse, err error)
+	GetPrograms(α *GetPrograms) (β *GetProgramsResponse, err error)
 
 	// Gets a list of prospect stages for a site.
-	GetProspectStages(s *GetProspectStages) (r *GetProspectStagesResponse, err error)
+	GetProspectStages(α *GetProspectStages) (β *GetProspectStagesResponse, err error)
 
 	// Gets a list of relationships.
-	GetRelationships(s *GetRelationships) (r *GetRelationshipsResponse, err error)
+	GetRelationships(α *GetRelationships) (β *GetRelationshipsResponse, err error)
 
 	// Gets all resources schedule.
-	GetResourceSchedule(s *GetResourceSchedule) (r *GetResourceScheduleResponse, err error)
+	GetResourceSchedule(α *GetResourceSchedule) (β *GetResourceScheduleResponse, err error)
 
 	// Gets a list of resources.
-	GetResources(s *GetResources) (r *GetResourcesResponse, err error)
+	GetResources(α *GetResources) (β *GetResourcesResponse, err error)
 
 	// Gets a list of session types.
-	GetSessionTypes(s *GetSessionTypes) (r *GetSessionTypesResponse, err error)
+	GetSessionTypes(α *GetSessionTypes) (β *GetSessionTypesResponse, err error)
 
 	// Gets a list of sites.
-	GetSites(s *GetSites) (r *GetSitesResponse, err error)
+	GetSites(α *GetSites) (β *GetSitesResponse, err error)
 
 	// Reserves a resource.
-	ReserveResource(s *ReserveResource) (r *ReserveResourceResponse, err error)
+	ReserveResource(α *ReserveResource) (β *ReserveResourceResponse, err error)
 }
 
 // DateTime in WSDL format.
@@ -792,174 +790,174 @@ type UserCredentials struct {
 	LocationID int         `xml:"LocationID,omitempty" json:"LocationID,omitempty" yaml:"LocationID,omitempty"`
 }
 
-// site_ServiceSoap implements the Site_ServiceSoap interface.
-type site_ServiceSoap struct {
+// site_x0020_ServiceSoap implements the Site_x0020_ServiceSoap interface.
+type site_x0020_ServiceSoap struct {
 	cli *soap.Client
 }
 
 // Gets an activation code.
-func (p *site_ServiceSoap) GetActivationCode(s *GetActivationCode) (r *GetActivationCodeResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetActivationCode(α *GetActivationCode) (β *GetActivationCodeResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetActivationCodeResponse `xml:"GetActivationCodeResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of prospect stages for a site.
-func (p *site_ServiceSoap) GetGenders(s *GetGenders) (r *GetGendersResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetGenders(α *GetGenders) (β *GetGendersResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetGendersResponse `xml:"GetGendersResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of locations.
-func (p *site_ServiceSoap) GetLocations(s *GetLocations) (r *GetLocationsResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetLocations(α *GetLocations) (β *GetLocationsResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetLocationsResponse `xml:"GetLocationsResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of active mobile providers.
-func (p *site_ServiceSoap) GetMobileProviders(s *GetMobileProviders) (r *GetMobileProvidersResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetMobileProviders(α *GetMobileProviders) (β *GetMobileProvidersResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetMobileProvidersResponse `xml:"GetMobileProvidersResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of programs.
-func (p *site_ServiceSoap) GetPrograms(s *GetPrograms) (r *GetProgramsResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetPrograms(α *GetPrograms) (β *GetProgramsResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetProgramsResponse `xml:"GetProgramsResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of prospect stages for a site.
-func (p *site_ServiceSoap) GetProspectStages(s *GetProspectStages) (r *GetProspectStagesResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetProspectStages(α *GetProspectStages) (β *GetProspectStagesResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetProspectStagesResponse `xml:"GetProspectStagesResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of relationships.
-func (p *site_ServiceSoap) GetRelationships(s *GetRelationships) (r *GetRelationshipsResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetRelationships(α *GetRelationships) (β *GetRelationshipsResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetRelationshipsResponse `xml:"GetRelationshipsResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets all resources schedule.
-func (p *site_ServiceSoap) GetResourceSchedule(s *GetResourceSchedule) (r *GetResourceScheduleResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetResourceSchedule(α *GetResourceSchedule) (β *GetResourceScheduleResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetResourceScheduleResponse `xml:"GetResourceScheduleResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of resources.
-func (p *site_ServiceSoap) GetResources(s *GetResources) (r *GetResourcesResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetResources(α *GetResources) (β *GetResourcesResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetResourcesResponse `xml:"GetResourcesResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of session types.
-func (p *site_ServiceSoap) GetSessionTypes(s *GetSessionTypes) (r *GetSessionTypesResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetSessionTypes(α *GetSessionTypes) (β *GetSessionTypesResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetSessionTypesResponse `xml:"GetSessionTypesResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Gets a list of sites.
-func (p *site_ServiceSoap) GetSites(s *GetSites) (r *GetSitesResponse, err error) {
+func (p *site_x0020_ServiceSoap) GetSites(α *GetSites) (β *GetSitesResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M GetSitesResponse `xml:"GetSitesResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil
 }
 
 // Reserves a resource.
-func (p *site_ServiceSoap) ReserveResource(s *ReserveResource) (r *ReserveResourceResponse, err error) {
+func (p *site_x0020_ServiceSoap) ReserveResource(α *ReserveResource) (β *ReserveResourceResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
 			M ReserveResourceResponse `xml:"ReserveResourceResponse"`
 		}
 	}{}
-	if err = p.cli.RoundTrip(s, &γ); err != nil {
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
 		return nil, err
 	}
 	return &γ.Body.M, nil

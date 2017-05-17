@@ -1,4 +1,4 @@
-package mboapicontracts
+package client_x0020_servicesoap
 
 import (
 	"encoding/xml"
