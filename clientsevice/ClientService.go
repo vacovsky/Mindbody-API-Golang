@@ -1,4 +1,4 @@
-package contracts
+package clientservice
 
 import (
 	"encoding/xml"

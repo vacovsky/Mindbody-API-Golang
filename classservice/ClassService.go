@@ -1,4 +1,4 @@
-package contracts
+package classservice
 
 import (
 	"encoding/xml"

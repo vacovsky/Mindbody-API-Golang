@@ -1,4 +1,4 @@
-package contracts
+package appointmentservice
 
 import (
 	"encoding/xml"
@@ -10,32 +10,38 @@ import (
 // Namespace was auto-generated from WSDL.
 var Namespace = "http://clients.mindbodyonline.com/api/0_5"
 
-// NewStaff_x0020_ServiceSoap creates an initializes a Staff_x0020_ServiceSoap.
-func NewStaff_x0020_ServiceSoap(cli *soap.Client) Staff_x0020_ServiceSoap {
-	return &staff_x0020_ServiceSoap{cli}
+// NewAppointment_x0020_ServiceSoap creates an initializes a Appointment_x0020_ServiceSoap.
+func NewAppointment_x0020_ServiceSoap(cli *soap.Client) Appointment_x0020_ServiceSoap {
+	return &appointment_x0020_ServiceSoap{cli}
 }
 
-// Staff_x0020_ServiceSoap was auto-generated from WSDL
+// Appointment_x0020_ServiceSoap was auto-generated from WSDL
 // and defines interface for the remote service. Useful for testing.
-type Staff_x0020_ServiceSoap interface {
-	// Add or update staff.
-	AddOrUpdateStaff(α *AddOrUpdateStaff) (β *AddOrUpdateStaffResponse, err error)
+type Appointment_x0020_ServiceSoap interface {
+	// Adds or updates a list of appointments.
+	AddOrUpdateAppointments(α *AddOrUpdateAppointments) (β *AddOrUpdateAppointmentsResponse, err error)
 
-	// Gets a list of sales reps based on the requested rep IDs
-	GetSalesReps(α *GetSalesReps) (β *GetSalesRepsResponse, err error)
+	// Adds or updates a list of availabilities.
+	AddOrUpdateAvailabilities(α *AddOrUpdateAvailabilities) (β *AddOrUpdateAvailabilitiesResponse, err error)
 
-	// Gets a list of staff members.
-	GetStaff(α *GetStaff) (β *GetStaffResponse, err error)
+	// Apply payment to appointment.
+	ApplyPayment(α *ApplyPayment) (β *ApplyPaymentResponse, err error)
 
-	// Gets a staff member's image URL if it exists.
-	GetStaffImgURL(α *GetStaffImgURL) (β *GetStaffImgURLResponse, err error)
+	// Gets a list of times that are active for a given program ID.
+	GetActiveSessionTimes(α *GetActiveSessionTimes) (β *GetActiveSessionTimesResponse, err error)
 
-	// Gets a list of staff permissions based on the given staff member.
-	GetStaffPermissions(α *GetStaffPermissions) (β *GetStaffPermissionsResponse, err error)
+	// Gets a list appointment options.
+	GetAppointmentOptions(α *GetAppointmentOptions) (β *GetAppointmentOptionsResponse, err error)
 
-	// Validates a username and password. This method returns the staff
-	// on success.
-	ValidateStaffLogin(α *ValidateStaffLogin) (β *ValidateStaffLoginResponse, err error)
+	// Gets a list of bookable items.
+	GetBookableItems(α *GetBookableItems) (β *GetBookableItemsResponse, err error)
+
+	// Gets a list of scheduled items (appointments, availabilities,
+	// and unavailabilities).
+	GetScheduleItems(α *GetScheduleItems) (β *GetScheduleItemsResponse, err error)
+
+	// Gets a list of appointments that a given staff member is instructing.
+	GetStaffAppointments(α *GetStaffAppointments) (β *GetStaffAppointmentsResponse, err error)
 }
 
 // DateTime in WSDL format.
@@ -81,6 +87,44 @@ func (v AppointmentStatus) Validate() bool {
 	return false
 }
 
+// AvailabilityDisplay was auto-generated from WSDL.
+type AvailabilityDisplay string
+
+// Validate validates AvailabilityDisplay.
+func (v AvailabilityDisplay) Validate() bool {
+	for _, vv := range []string{
+		"Hide",
+		"Show",
+		"Mask",
+	} {
+		if reflect.DeepEqual(v, vv) {
+			return true
+		}
+	}
+	return false
+}
+
+// DayOfWeek was auto-generated from WSDL.
+type DayOfWeek string
+
+// Validate validates DayOfWeek.
+func (v DayOfWeek) Validate() bool {
+	for _, vv := range []string{
+		"Sunday",
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday",
+	} {
+		if reflect.DeepEqual(v, vv) {
+			return true
+		}
+	}
+	return false
+}
+
 // ScheduleType was auto-generated from WSDL.
 type ScheduleType string
 
@@ -94,25 +138,6 @@ func (v ScheduleType) Validate() bool {
 		"Resource",
 		"Media",
 		"Arrival",
-	} {
-		if reflect.DeepEqual(v, vv) {
-			return true
-		}
-	}
-	return false
-}
-
-// StaffFilter was auto-generated from WSDL.
-type StaffFilter string
-
-// Validate validates StaffFilter.
-func (v StaffFilter) Validate() bool {
-	for _, vv := range []string{
-		"StaffViewable",
-		"AppointmentInstructor",
-		"ClassInstructor",
-		"Male",
-		"Female",
 	} {
 		if reflect.DeepEqual(v, vv) {
 			return true
@@ -158,32 +183,81 @@ func (v XMLDetailLevel) Validate() bool {
 	return false
 }
 
-// AddOrUpdateStaff was auto-generated from WSDL.
-type AddOrUpdateStaff struct {
-	XMLName xml.Name                 `xml:"http://clients.mindbodyonline.com/api/0_5 AddOrUpdateStaff" json:"-" yaml:"-"`
-	Request *AddOrUpdateStaffRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
+// AddOrUpdateAppointments was auto-generated from WSDL.
+type AddOrUpdateAppointments struct {
+	XMLName xml.Name                        `xml:"http://clients.mindbodyonline.com/api/0_5 AddOrUpdateAppointments" json:"-" yaml:"-"`
+	Request *AddOrUpdateAppointmentsRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
 }
 
-// AddOrUpdateStaffRequest was auto-generated from WSDL.
-type AddOrUpdateStaffRequest struct {
-	SourceCredentials *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
-	UserCredentials   *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
-	XMLDetail         XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
-	PageSize          int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
-	CurrentPageIndex  int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
-	Fields            *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
-	UpdateAction      string             `xml:"UpdateAction,omitempty" json:"UpdateAction,omitempty" yaml:"UpdateAction,omitempty"`
-	Test              bool               `xml:"Test,omitempty" json:"Test,omitempty" yaml:"Test,omitempty"`
-	Staff             *ArrayOfStaff      `xml:"Staff,omitempty" json:"Staff,omitempty" yaml:"Staff,omitempty"`
+// AddOrUpdateAppointmentsRequest was auto-generated from WSDL.
+type AddOrUpdateAppointmentsRequest struct {
+	SourceCredentials          *SourceCredentials  `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
+	UserCredentials            *UserCredentials    `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
+	XMLDetail                  XMLDetailLevel      `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
+	PageSize                   int                 `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
+	CurrentPageIndex           int                 `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
+	Fields                     *ArrayOfString      `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
+	UpdateAction               string              `xml:"UpdateAction,omitempty" json:"UpdateAction,omitempty" yaml:"UpdateAction,omitempty"`
+	Test                       bool                `xml:"Test,omitempty" json:"Test,omitempty" yaml:"Test,omitempty"`
+	SendEmail                  bool                `xml:"SendEmail,omitempty" json:"SendEmail,omitempty" yaml:"SendEmail,omitempty"`
+	ApplyPayment               bool                `xml:"ApplyPayment,omitempty" json:"ApplyPayment,omitempty" yaml:"ApplyPayment,omitempty"`
+	Appointments               *ArrayOfAppointment `xml:"Appointments,omitempty" json:"Appointments,omitempty" yaml:"Appointments,omitempty"`
+	IgnoreDefaultSessionLength bool                `xml:"IgnoreDefaultSessionLength,omitempty" json:"IgnoreDefaultSessionLength,omitempty" yaml:"IgnoreDefaultSessionLength,omitempty"`
 }
 
-// AddOrUpdateStaffResponse was auto-generated from WSDL.
-type AddOrUpdateStaffResponse struct {
-	AddOrUpdateStaffResult *AddOrUpdateStaffResult `xml:"AddOrUpdateStaffResult,omitempty" json:"AddOrUpdateStaffResult,omitempty" yaml:"AddOrUpdateStaffResult,omitempty"`
+// AddOrUpdateAppointmentsResponse was auto-generated from WSDL.
+type AddOrUpdateAppointmentsResponse struct {
+	AddOrUpdateAppointmentsResult *AddOrUpdateAppointmentsResult `xml:"AddOrUpdateAppointmentsResult,omitempty" json:"AddOrUpdateAppointmentsResult,omitempty" yaml:"AddOrUpdateAppointmentsResult,omitempty"`
 }
 
-// AddOrUpdateStaffResult was auto-generated from WSDL.
-type AddOrUpdateStaffResult struct {
+// AddOrUpdateAppointmentsResult was auto-generated from WSDL.
+type AddOrUpdateAppointmentsResult struct {
+	Status           StatusCode          `xml:"Status" json:"Status" yaml:"Status"`
+	ErrorCode        int                 `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
+	Message          string              `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
+	XMLDetail        XMLDetailLevel      `xml:"XMLDetail" json:"XMLDetail" yaml:"XMLDetail"`
+	ResultCount      int                 `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
+	CurrentPageIndex int                 `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
+	TotalPageCount   int                 `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
+	Appointments     *ArrayOfAppointment `xml:"Appointments,omitempty" json:"Appointments,omitempty" yaml:"Appointments,omitempty"`
+}
+
+// AddOrUpdateAvailabilities was auto-generated from WSDL.
+type AddOrUpdateAvailabilities struct {
+	XMLName xml.Name                          `xml:"http://clients.mindbodyonline.com/api/0_5 AddOrUpdateAvailabilities" json:"-" yaml:"-"`
+	Request *AddOrUpdateAvailabilitiesRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
+}
+
+// AddOrUpdateAvailabilitiesRequest was auto-generated from WSDL.
+type AddOrUpdateAvailabilitiesRequest struct {
+	SourceCredentials      *SourceCredentials  `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
+	UserCredentials        *UserCredentials    `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
+	XMLDetail              XMLDetailLevel      `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
+	PageSize               int                 `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
+	CurrentPageIndex       int                 `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
+	Fields                 *ArrayOfString      `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
+	UpdateAction           string              `xml:"UpdateAction,omitempty" json:"UpdateAction,omitempty" yaml:"UpdateAction,omitempty"`
+	Test                   bool                `xml:"Test,omitempty" json:"Test,omitempty" yaml:"Test,omitempty"`
+	AvailabilityIDs        *ArrayOfInt         `xml:"AvailabilityIDs,omitempty" json:"AvailabilityIDs,omitempty" yaml:"AvailabilityIDs,omitempty"`
+	LocationID             int                 `xml:"LocationID,omitempty" json:"LocationID,omitempty" yaml:"LocationID,omitempty"`
+	StaffIDs               *ArrayOfLong        `xml:"StaffIDs,omitempty" json:"StaffIDs,omitempty" yaml:"StaffIDs,omitempty"`
+	ProgramIDs             *ArrayOfInt         `xml:"ProgramIDs,omitempty" json:"ProgramIDs,omitempty" yaml:"ProgramIDs,omitempty"`
+	StartDateTime          DateTime            `xml:"StartDateTime,omitempty" json:"StartDateTime,omitempty" yaml:"StartDateTime,omitempty"`
+	EndDateTime            DateTime            `xml:"EndDateTime,omitempty" json:"EndDateTime,omitempty" yaml:"EndDateTime,omitempty"`
+	DaysOfWeek             *ArrayOfDayOfWeek   `xml:"DaysOfWeek,omitempty" json:"DaysOfWeek,omitempty" yaml:"DaysOfWeek,omitempty"`
+	UnavailableDescription string              `xml:"UnavailableDescription,omitempty" json:"UnavailableDescription,omitempty" yaml:"UnavailableDescription,omitempty"`
+	IsUnavailable          bool                `xml:"IsUnavailable" json:"IsUnavailable" yaml:"IsUnavailable"`
+	PublicDisplay          AvailabilityDisplay `xml:"PublicDisplay,omitempty" json:"PublicDisplay,omitempty" yaml:"PublicDisplay,omitempty"`
+	Execute                string              `xml:"Execute,omitempty" json:"Execute,omitempty" yaml:"Execute,omitempty"`
+}
+
+// AddOrUpdateAvailabilitiesResponse was auto-generated from WSDL.
+type AddOrUpdateAvailabilitiesResponse struct {
+	AddOrUpdateAvailabilitiesResult *AddOrUpdateAvailabilitiesResult `xml:"AddOrUpdateAvailabilitiesResult,omitempty" json:"AddOrUpdateAvailabilitiesResult,omitempty" yaml:"AddOrUpdateAvailabilitiesResult,omitempty"`
+}
+
+// AddOrUpdateAvailabilitiesResult was auto-generated from WSDL.
+type AddOrUpdateAvailabilitiesResult struct {
 	Status           StatusCode     `xml:"Status" json:"Status" yaml:"Status"`
 	ErrorCode        int            `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
 	Message          string         `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
@@ -191,7 +265,18 @@ type AddOrUpdateStaffResult struct {
 	ResultCount      int            `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
 	CurrentPageIndex int            `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
 	TotalPageCount   int            `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
-	Staff            *ArrayOfStaff  `xml:"Staff,omitempty" json:"Staff,omitempty" yaml:"Staff,omitempty"`
+	StaffMembers     *ArrayOfStaff  `xml:"StaffMembers,omitempty" json:"StaffMembers,omitempty" yaml:"StaffMembers,omitempty"`
+}
+
+// ApplyPayment was auto-generated from WSDL.
+type ApplyPayment struct {
+	XMLName xml.Name                        `xml:"http://clients.mindbodyonline.com/api/0_5 ApplyPayment" json:"-" yaml:"-"`
+	Request *AppointmentApplyPaymentRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
+}
+
+// ApplyPaymentResponse was auto-generated from WSDL.
+type ApplyPaymentResponse struct {
+	ApplyPaymentResult *AppointmentApplyPaymentResult `xml:"ApplyPaymentResult,omitempty" json:"ApplyPaymentResult,omitempty" yaml:"ApplyPaymentResult,omitempty"`
 }
 
 // Appointment was auto-generated from WSDL.
@@ -218,6 +303,30 @@ type Appointment struct {
 	FirstAppointment bool              `xml:"FirstAppointment,omitempty" json:"FirstAppointment,omitempty" yaml:"FirstAppointment,omitempty"`
 	ClientService    *ClientService    `xml:"ClientService,omitempty" json:"ClientService,omitempty" yaml:"ClientService,omitempty"`
 	Resources        *ArrayOfResource  `xml:"Resources,omitempty" json:"Resources,omitempty" yaml:"Resources,omitempty"`
+}
+
+// AppointmentApplyPaymentRequest was auto-generated from WSDL.
+type AppointmentApplyPaymentRequest struct {
+	SourceCredentials *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
+	UserCredentials   *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
+	XMLDetail         XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
+	PageSize          int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
+	CurrentPageIndex  int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
+	Fields            *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
+	AppointmentID     int64              `xml:"AppointmentID" json:"AppointmentID" yaml:"AppointmentID"`
+	ClientServiceID   int64              `xml:"ClientServiceID,omitempty" json:"ClientServiceID,omitempty" yaml:"ClientServiceID,omitempty"`
+}
+
+// AppointmentApplyPaymentResult was auto-generated from WSDL.
+type AppointmentApplyPaymentResult struct {
+	Status           StatusCode     `xml:"Status" json:"Status" yaml:"Status"`
+	ErrorCode        int            `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
+	Message          string         `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
+	XMLDetail        XMLDetailLevel `xml:"XMLDetail" json:"XMLDetail" yaml:"XMLDetail"`
+	ResultCount      int            `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
+	CurrentPageIndex int            `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
+	TotalPageCount   int            `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
+	VisitID          int64          `xml:"VisitID" json:"VisitID" yaml:"VisitID"`
 }
 
 // ArrayOfAppointment was auto-generated from WSDL.
@@ -250,6 +359,16 @@ type ArrayOfCustomClientField struct {
 	CustomClientField []*CustomClientField `xml:"CustomClientField,omitempty" json:"CustomClientField,omitempty" yaml:"CustomClientField,omitempty"`
 }
 
+// ArrayOfDateTime was auto-generated from WSDL.
+type ArrayOfDateTime struct {
+	DateTime []DateTime `xml:"dateTime,omitempty" json:"dateTime,omitempty" yaml:"dateTime,omitempty"`
+}
+
+// ArrayOfDayOfWeek was auto-generated from WSDL.
+type ArrayOfDayOfWeek struct {
+	DayOfWeek []DayOfWeek `xml:"DayOfWeek,omitempty" json:"DayOfWeek,omitempty" yaml:"DayOfWeek,omitempty"`
+}
+
 // ArrayOfInt was auto-generated from WSDL.
 type ArrayOfInt struct {
 	Int []int `xml:"int,omitempty" json:"int,omitempty" yaml:"int,omitempty"`
@@ -265,9 +384,9 @@ type ArrayOfLong struct {
 	Long []int64 `xml:"long,omitempty" json:"long,omitempty" yaml:"long,omitempty"`
 }
 
-// ArrayOfPermission was auto-generated from WSDL.
-type ArrayOfPermission struct {
-	Permission []*Permission `xml:"Permission,omitempty" json:"Permission,omitempty" yaml:"Permission,omitempty"`
+// ArrayOfOption was auto-generated from WSDL.
+type ArrayOfOption struct {
+	Option []*Option `xml:"Option,omitempty" json:"Option,omitempty" yaml:"Option,omitempty"`
 }
 
 // ArrayOfProgram was auto-generated from WSDL.
@@ -295,14 +414,14 @@ type ArrayOfSalesRep struct {
 	SalesRep []*SalesRep `xml:"SalesRep,omitempty" json:"SalesRep,omitempty" yaml:"SalesRep,omitempty"`
 }
 
+// ArrayOfScheduleItem was auto-generated from WSDL.
+type ArrayOfScheduleItem struct {
+	ScheduleItem []*ScheduleItem `xml:"ScheduleItem,omitempty" json:"ScheduleItem,omitempty" yaml:"ScheduleItem,omitempty"`
+}
+
 // ArrayOfStaff was auto-generated from WSDL.
 type ArrayOfStaff struct {
 	Staff []*Staff `xml:"Staff,omitempty" json:"Staff,omitempty" yaml:"Staff,omitempty"`
-}
-
-// ArrayOfStaffFilter was auto-generated from WSDL.
-type ArrayOfStaffFilter struct {
-	StaffFilter []StaffFilter `xml:"StaffFilter,omitempty" json:"StaffFilter,omitempty" yaml:"StaffFilter,omitempty"`
 }
 
 // ArrayOfString was auto-generated from WSDL.
@@ -471,31 +590,33 @@ type CustomClientField struct {
 	Value    string `xml:"Value,omitempty" json:"Value,omitempty" yaml:"Value,omitempty"`
 }
 
-// GetSalesReps was auto-generated from WSDL.
-type GetSalesReps struct {
-	XMLName xml.Name             `xml:"http://clients.mindbodyonline.com/api/0_5 GetSalesReps" json:"-" yaml:"-"`
-	Request *GetSalesRepsRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
+// GetActiveSessionTimes was auto-generated from WSDL.
+type GetActiveSessionTimes struct {
+	XMLName xml.Name                      `xml:"http://clients.mindbodyonline.com/api/0_5 GetActiveSessionTimes" json:"-" yaml:"-"`
+	Request *GetActiveSessionTimesRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
 }
 
-// GetSalesRepsRequest was auto-generated from WSDL.
-type GetSalesRepsRequest struct {
+// GetActiveSessionTimesRequest was auto-generated from WSDL.
+type GetActiveSessionTimesRequest struct {
 	SourceCredentials *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
 	UserCredentials   *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
 	XMLDetail         XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
 	PageSize          int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
 	CurrentPageIndex  int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
 	Fields            *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
-	SalesRepNumbers   *ArrayOfInt        `xml:"SalesRepNumbers,omitempty" json:"SalesRepNumbers,omitempty" yaml:"SalesRepNumbers,omitempty"`
-	ShowActiveOnly    bool               `xml:"ShowActiveOnly,omitempty" json:"ShowActiveOnly,omitempty" yaml:"ShowActiveOnly,omitempty"`
+	ScheduleType      ScheduleType       `xml:"ScheduleType,omitempty" json:"ScheduleType,omitempty" yaml:"ScheduleType,omitempty"`
+	SessionTypeIDs    *ArrayOfInt        `xml:"SessionTypeIDs,omitempty" json:"SessionTypeIDs,omitempty" yaml:"SessionTypeIDs,omitempty"`
+	StartTime         DateTime           `xml:"StartTime,omitempty" json:"StartTime,omitempty" yaml:"StartTime,omitempty"`
+	EndTime           DateTime           `xml:"EndTime,omitempty" json:"EndTime,omitempty" yaml:"EndTime,omitempty"`
 }
 
-// GetSalesRepsResponse was auto-generated from WSDL.
-type GetSalesRepsResponse struct {
-	GetSalesRepsResult *GetSalesRepsResult `xml:"GetSalesRepsResult,omitempty" json:"GetSalesRepsResult,omitempty" yaml:"GetSalesRepsResult,omitempty"`
+// GetActiveSessionTimesResponse was auto-generated from WSDL.
+type GetActiveSessionTimesResponse struct {
+	GetActiveSessionTimesResult *GetActiveSessionTimesResult `xml:"GetActiveSessionTimesResult,omitempty" json:"GetActiveSessionTimesResult,omitempty" yaml:"GetActiveSessionTimesResult,omitempty"`
 }
 
-// GetSalesRepsResult was auto-generated from WSDL.
-type GetSalesRepsResult struct {
+// GetActiveSessionTimesResult was auto-generated from WSDL.
+type GetActiveSessionTimesResult struct {
 	Status           StatusCode       `xml:"Status" json:"Status" yaml:"Status"`
 	ErrorCode        int              `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
 	Message          string           `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
@@ -503,39 +624,32 @@ type GetSalesRepsResult struct {
 	ResultCount      int              `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
 	CurrentPageIndex int              `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
 	TotalPageCount   int              `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
-	SalesReps        *ArrayOfSalesRep `xml:"SalesReps,omitempty" json:"SalesReps,omitempty" yaml:"SalesReps,omitempty"`
+	Times            *ArrayOfDateTime `xml:"Times,omitempty" json:"Times,omitempty" yaml:"Times,omitempty"`
 }
 
-// GetStaff was auto-generated from WSDL.
-type GetStaff struct {
-	XMLName xml.Name         `xml:"http://clients.mindbodyonline.com/api/0_5 GetStaff" json:"-" yaml:"-"`
-	Request *GetStaffRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
+// GetAppointmentOptions was auto-generated from WSDL.
+type GetAppointmentOptions struct {
+	XMLName xml.Name                      `xml:"http://clients.mindbodyonline.com/api/0_5 GetAppointmentOptions" json:"-" yaml:"-"`
+	Request *GetAppointmentOptionsRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
 }
 
-// GetStaffImgURL was auto-generated from WSDL.
-type GetStaffImgURL struct {
-	XMLName xml.Name               `xml:"http://clients.mindbodyonline.com/api/0_5 GetStaffImgURL" json:"-" yaml:"-"`
-	Request *GetStaffImgURLRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
-}
-
-// GetStaffImgURLRequest was auto-generated from WSDL.
-type GetStaffImgURLRequest struct {
+// GetAppointmentOptionsRequest was auto-generated from WSDL.
+type GetAppointmentOptionsRequest struct {
 	SourceCredentials *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
 	UserCredentials   *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
 	XMLDetail         XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
 	PageSize          int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
 	CurrentPageIndex  int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
 	Fields            *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
-	StaffID           int64              `xml:"StaffID" json:"StaffID" yaml:"StaffID"`
 }
 
-// GetStaffImgURLResponse was auto-generated from WSDL.
-type GetStaffImgURLResponse struct {
-	GetStaffImgURLResult *GetStaffImgURLResult `xml:"GetStaffImgURLResult,omitempty" json:"GetStaffImgURLResult,omitempty" yaml:"GetStaffImgURLResult,omitempty"`
+// GetAppointmentOptionsResponse was auto-generated from WSDL.
+type GetAppointmentOptionsResponse struct {
+	GetAppointmentOptionsResult *GetAppointmentOptionsResult `xml:"GetAppointmentOptionsResult,omitempty" json:"GetAppointmentOptionsResult,omitempty" yaml:"GetAppointmentOptionsResult,omitempty"`
 }
 
-// GetStaffImgURLResult was auto-generated from WSDL.
-type GetStaffImgURLResult struct {
+// GetAppointmentOptionsResult was auto-generated from WSDL.
+type GetAppointmentOptionsResult struct {
 	Status           StatusCode     `xml:"Status" json:"Status" yaml:"Status"`
 	ErrorCode        int            `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
 	Message          string         `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
@@ -543,67 +657,77 @@ type GetStaffImgURLResult struct {
 	ResultCount      int            `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
 	CurrentPageIndex int            `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
 	TotalPageCount   int            `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
-	ImageURL         string         `xml:"ImageURL,omitempty" json:"ImageURL,omitempty" yaml:"ImageURL,omitempty"`
-	MobileImageURL   string         `xml:"MobileImageURL,omitempty" json:"MobileImageURL,omitempty" yaml:"MobileImageURL,omitempty"`
+	Options          *ArrayOfOption `xml:"Options,omitempty" json:"Options,omitempty" yaml:"Options,omitempty"`
 }
 
-// GetStaffPermissions was auto-generated from WSDL.
-type GetStaffPermissions struct {
-	XMLName xml.Name                    `xml:"http://clients.mindbodyonline.com/api/0_5 GetStaffPermissions" json:"-" yaml:"-"`
-	Request *GetStaffPermissionsRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
+// GetBookableItems was auto-generated from WSDL.
+type GetBookableItems struct {
+	XMLName xml.Name                 `xml:"http://clients.mindbodyonline.com/api/0_5 GetBookableItems" json:"-" yaml:"-"`
+	Request *GetBookableItemsRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
 }
 
-// GetStaffPermissionsRequest was auto-generated from WSDL.
-type GetStaffPermissionsRequest struct {
-	SourceCredentials *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
-	UserCredentials   *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
-	XMLDetail         XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
-	PageSize          int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
-	CurrentPageIndex  int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
-	Fields            *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
-	StaffID           int64              `xml:"StaffID" json:"StaffID" yaml:"StaffID"`
+// GetBookableItemsRequest was auto-generated from WSDL.
+type GetBookableItemsRequest struct {
+	SourceCredentials          *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
+	UserCredentials            *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
+	XMLDetail                  XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
+	PageSize                   int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
+	CurrentPageIndex           int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
+	Fields                     *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
+	SessionTypeIDs             *ArrayOfInt        `xml:"SessionTypeIDs,omitempty" json:"SessionTypeIDs,omitempty" yaml:"SessionTypeIDs,omitempty"`
+	LocationIDs                *ArrayOfInt        `xml:"LocationIDs,omitempty" json:"LocationIDs,omitempty" yaml:"LocationIDs,omitempty"`
+	StaffIDs                   *ArrayOfLong       `xml:"StaffIDs,omitempty" json:"StaffIDs,omitempty" yaml:"StaffIDs,omitempty"`
+	StartDate                  DateTime           `xml:"StartDate,omitempty" json:"StartDate,omitempty" yaml:"StartDate,omitempty"`
+	EndDate                    DateTime           `xml:"EndDate,omitempty" json:"EndDate,omitempty" yaml:"EndDate,omitempty"`
+	AppointmentID              int64              `xml:"AppointmentID,omitempty" json:"AppointmentID,omitempty" yaml:"AppointmentID,omitempty"`
+	IgnoreDefaultSessionLength bool               `xml:"IgnoreDefaultSessionLength,omitempty" json:"IgnoreDefaultSessionLength,omitempty" yaml:"IgnoreDefaultSessionLength,omitempty"`
 }
 
-// GetStaffPermissionsResponse was auto-generated from WSDL.
-type GetStaffPermissionsResponse struct {
-	GetStaffPermissionsResult *GetStaffPermissionsResult `xml:"GetStaffPermissionsResult,omitempty" json:"GetStaffPermissionsResult,omitempty" yaml:"GetStaffPermissionsResult,omitempty"`
+// GetBookableItemsResponse was auto-generated from WSDL.
+type GetBookableItemsResponse struct {
+	GetBookableItemsResult *GetBookableItemsResult `xml:"GetBookableItemsResult,omitempty" json:"GetBookableItemsResult,omitempty" yaml:"GetBookableItemsResult,omitempty"`
 }
 
-// GetStaffPermissionsResult was auto-generated from WSDL.
-type GetStaffPermissionsResult struct {
-	Status           StatusCode         `xml:"Status" json:"Status" yaml:"Status"`
-	ErrorCode        int                `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
-	Message          string             `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
-	XMLDetail        XMLDetailLevel     `xml:"XMLDetail" json:"XMLDetail" yaml:"XMLDetail"`
-	ResultCount      int                `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
-	CurrentPageIndex int                `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
-	TotalPageCount   int                `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
-	Permissions      *ArrayOfPermission `xml:"Permissions,omitempty" json:"Permissions,omitempty" yaml:"Permissions,omitempty"`
+// GetBookableItemsResult was auto-generated from WSDL.
+type GetBookableItemsResult struct {
+	Status           StatusCode           `xml:"Status" json:"Status" yaml:"Status"`
+	ErrorCode        int                  `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
+	Message          string               `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
+	XMLDetail        XMLDetailLevel       `xml:"XMLDetail" json:"XMLDetail" yaml:"XMLDetail"`
+	ResultCount      int                  `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
+	CurrentPageIndex int                  `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
+	TotalPageCount   int                  `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
+	ScheduleItems    *ArrayOfScheduleItem `xml:"ScheduleItems,omitempty" json:"ScheduleItems,omitempty" yaml:"ScheduleItems,omitempty"`
 }
 
-// GetStaffRequest was auto-generated from WSDL.
-type GetStaffRequest struct {
-	SourceCredentials *SourceCredentials  `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
-	UserCredentials   *UserCredentials    `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
-	XMLDetail         XMLDetailLevel      `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
-	PageSize          int                 `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
-	CurrentPageIndex  int                 `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
-	Fields            *ArrayOfString      `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
-	StaffIDs          *ArrayOfLong        `xml:"StaffIDs,omitempty" json:"StaffIDs,omitempty" yaml:"StaffIDs,omitempty"`
-	StaffCredentials  *StaffCredentials   `xml:"StaffCredentials,omitempty" json:"StaffCredentials,omitempty" yaml:"StaffCredentials,omitempty"`
-	Filters           *ArrayOfStaffFilter `xml:"Filters,omitempty" json:"Filters,omitempty" yaml:"Filters,omitempty"`
-	SessionTypeID     int                 `xml:"SessionTypeID,omitempty" json:"SessionTypeID,omitempty" yaml:"SessionTypeID,omitempty"`
-	StartDateTime     DateTime            `xml:"StartDateTime,omitempty" json:"StartDateTime,omitempty" yaml:"StartDateTime,omitempty"`
-	LocationID        int                 `xml:"LocationID,omitempty" json:"LocationID,omitempty" yaml:"LocationID,omitempty"`
+// GetScheduleItems was auto-generated from WSDL.
+type GetScheduleItems struct {
+	XMLName xml.Name                 `xml:"http://clients.mindbodyonline.com/api/0_5 GetScheduleItems" json:"-" yaml:"-"`
+	Request *GetScheduleItemsRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
 }
 
-// GetStaffResponse was auto-generated from WSDL.
-type GetStaffResponse struct {
-	GetStaffResult *GetStaffResult `xml:"GetStaffResult,omitempty" json:"GetStaffResult,omitempty" yaml:"GetStaffResult,omitempty"`
+// GetScheduleItemsRequest was auto-generated from WSDL.
+type GetScheduleItemsRequest struct {
+	SourceCredentials     *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
+	UserCredentials       *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
+	XMLDetail             XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
+	PageSize              int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
+	CurrentPageIndex      int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
+	Fields                *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
+	LocationIDs           *ArrayOfInt        `xml:"LocationIDs,omitempty" json:"LocationIDs,omitempty" yaml:"LocationIDs,omitempty"`
+	StaffIDs              *ArrayOfLong       `xml:"StaffIDs,omitempty" json:"StaffIDs,omitempty" yaml:"StaffIDs,omitempty"`
+	StartDate             DateTime           `xml:"StartDate,omitempty" json:"StartDate,omitempty" yaml:"StartDate,omitempty"`
+	EndDate               DateTime           `xml:"EndDate,omitempty" json:"EndDate,omitempty" yaml:"EndDate,omitempty"`
+	IgnorePrepFinishTimes bool               `xml:"IgnorePrepFinishTimes" json:"IgnorePrepFinishTimes" yaml:"IgnorePrepFinishTimes"`
 }
 
-// GetStaffResult was auto-generated from WSDL.
-type GetStaffResult struct {
+// GetScheduleItemsResponse was auto-generated from WSDL.
+type GetScheduleItemsResponse struct {
+	GetScheduleItemsResult *GetScheduleItemsResult `xml:"GetScheduleItemsResult,omitempty" json:"GetScheduleItemsResult,omitempty" yaml:"GetScheduleItemsResult,omitempty"`
+}
+
+// GetScheduleItemsResult was auto-generated from WSDL.
+type GetScheduleItemsResult struct {
 	Status           StatusCode     `xml:"Status" json:"Status" yaml:"Status"`
 	ErrorCode        int            `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
 	Message          string         `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
@@ -612,6 +736,46 @@ type GetStaffResult struct {
 	CurrentPageIndex int            `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
 	TotalPageCount   int            `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
 	StaffMembers     *ArrayOfStaff  `xml:"StaffMembers,omitempty" json:"StaffMembers,omitempty" yaml:"StaffMembers,omitempty"`
+}
+
+// GetStaffAppointments was auto-generated from WSDL.
+type GetStaffAppointments struct {
+	XMLName xml.Name                     `xml:"http://clients.mindbodyonline.com/api/0_5 GetStaffAppointments" json:"-" yaml:"-"`
+	Request *GetStaffAppointmentsRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
+}
+
+// GetStaffAppointmentsRequest was auto-generated from WSDL.
+type GetStaffAppointmentsRequest struct {
+	SourceCredentials *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
+	UserCredentials   *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
+	XMLDetail         XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
+	PageSize          int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
+	CurrentPageIndex  int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
+	Fields            *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
+	StaffCredentials  *StaffCredentials  `xml:"StaffCredentials,omitempty" json:"StaffCredentials,omitempty" yaml:"StaffCredentials,omitempty"`
+	AppointmentIDs    *ArrayOfInt        `xml:"AppointmentIDs,omitempty" json:"AppointmentIDs,omitempty" yaml:"AppointmentIDs,omitempty"`
+	LocationIDs       *ArrayOfInt        `xml:"LocationIDs,omitempty" json:"LocationIDs,omitempty" yaml:"LocationIDs,omitempty"`
+	StartDate         DateTime           `xml:"StartDate,omitempty" json:"StartDate,omitempty" yaml:"StartDate,omitempty"`
+	EndDate           DateTime           `xml:"EndDate,omitempty" json:"EndDate,omitempty" yaml:"EndDate,omitempty"`
+	StaffIDs          *ArrayOfLong       `xml:"StaffIDs,omitempty" json:"StaffIDs,omitempty" yaml:"StaffIDs,omitempty"`
+	ClientIDs         *ArrayOfString     `xml:"ClientIDs,omitempty" json:"ClientIDs,omitempty" yaml:"ClientIDs,omitempty"`
+}
+
+// GetStaffAppointmentsResponse was auto-generated from WSDL.
+type GetStaffAppointmentsResponse struct {
+	GetStaffAppointmentsResult *GetStaffAppointmentsResult `xml:"GetStaffAppointmentsResult,omitempty" json:"GetStaffAppointmentsResult,omitempty" yaml:"GetStaffAppointmentsResult,omitempty"`
+}
+
+// GetStaffAppointmentsResult was auto-generated from WSDL.
+type GetStaffAppointmentsResult struct {
+	Status           StatusCode          `xml:"Status" json:"Status" yaml:"Status"`
+	ErrorCode        int                 `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
+	Message          string              `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
+	XMLDetail        XMLDetailLevel      `xml:"XMLDetail" json:"XMLDetail" yaml:"XMLDetail"`
+	ResultCount      int                 `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
+	CurrentPageIndex int                 `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
+	TotalPageCount   int                 `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
+	Appointments     *ArrayOfAppointment `xml:"Appointments,omitempty" json:"Appointments,omitempty" yaml:"Appointments,omitempty"`
 }
 
 // Liability was auto-generated from WSDL.
@@ -688,11 +852,12 @@ type MBResult struct {
 	TotalPageCount   int            `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
 }
 
-// Permission was auto-generated from WSDL.
-type Permission struct {
+// Option was auto-generated from WSDL.
+type Option struct {
 	DisplayName string `xml:"DisplayName,omitempty" json:"DisplayName,omitempty" yaml:"DisplayName,omitempty"`
 	Name        string `xml:"Name,omitempty" json:"Name,omitempty" yaml:"Name,omitempty"`
 	Value       string `xml:"Value,omitempty" json:"Value,omitempty" yaml:"Value,omitempty"`
+	Type        string `xml:"Type,omitempty" json:"Type,omitempty" yaml:"Type,omitempty"`
 }
 
 // Program was auto-generated from WSDL.
@@ -880,54 +1045,17 @@ type UserCredentials struct {
 	LocationID int         `xml:"LocationID,omitempty" json:"LocationID,omitempty" yaml:"LocationID,omitempty"`
 }
 
-// ValidateLoginRequest was auto-generated from WSDL.
-type ValidateLoginRequest struct {
-	SourceCredentials *SourceCredentials `xml:"SourceCredentials,omitempty" json:"SourceCredentials,omitempty" yaml:"SourceCredentials,omitempty"`
-	UserCredentials   *UserCredentials   `xml:"UserCredentials,omitempty" json:"UserCredentials,omitempty" yaml:"UserCredentials,omitempty"`
-	XMLDetail         XMLDetailLevel     `xml:"XMLDetail,omitempty" json:"XMLDetail,omitempty" yaml:"XMLDetail,omitempty"`
-	PageSize          int                `xml:"PageSize,omitempty" json:"PageSize,omitempty" yaml:"PageSize,omitempty"`
-	CurrentPageIndex  int                `xml:"CurrentPageIndex,omitempty" json:"CurrentPageIndex,omitempty" yaml:"CurrentPageIndex,omitempty"`
-	Fields            *ArrayOfString     `xml:"Fields,omitempty" json:"Fields,omitempty" yaml:"Fields,omitempty"`
-	Username          string             `xml:"Username,omitempty" json:"Username,omitempty" yaml:"Username,omitempty"`
-	Password          string             `xml:"Password,omitempty" json:"Password,omitempty" yaml:"Password,omitempty"`
-}
-
-// ValidateLoginResult was auto-generated from WSDL.
-type ValidateLoginResult struct {
-	Status           StatusCode     `xml:"Status" json:"Status" yaml:"Status"`
-	ErrorCode        int            `xml:"ErrorCode" json:"ErrorCode" yaml:"ErrorCode"`
-	Message          string         `xml:"Message,omitempty" json:"Message,omitempty" yaml:"Message,omitempty"`
-	XMLDetail        XMLDetailLevel `xml:"XMLDetail" json:"XMLDetail" yaml:"XMLDetail"`
-	ResultCount      int            `xml:"ResultCount" json:"ResultCount" yaml:"ResultCount"`
-	CurrentPageIndex int            `xml:"CurrentPageIndex" json:"CurrentPageIndex" yaml:"CurrentPageIndex"`
-	TotalPageCount   int            `xml:"TotalPageCount" json:"TotalPageCount" yaml:"TotalPageCount"`
-	GUID             string         `xml:"GUID,omitempty" json:"GUID,omitempty" yaml:"GUID,omitempty"`
-	Client           *Client        `xml:"Client,omitempty" json:"Client,omitempty" yaml:"Client,omitempty"`
-	Staff            *Staff         `xml:"Staff,omitempty" json:"Staff,omitempty" yaml:"Staff,omitempty"`
-}
-
-// ValidateStaffLogin was auto-generated from WSDL.
-type ValidateStaffLogin struct {
-	XMLName xml.Name              `xml:"http://clients.mindbodyonline.com/api/0_5 ValidateStaffLogin" json:"-" yaml:"-"`
-	Request *ValidateLoginRequest `xml:"Request,omitempty" json:"Request,omitempty" yaml:"Request,omitempty"`
-}
-
-// ValidateStaffLoginResponse was auto-generated from WSDL.
-type ValidateStaffLoginResponse struct {
-	ValidateStaffLoginResult *ValidateLoginResult `xml:"ValidateStaffLoginResult,omitempty" json:"ValidateStaffLoginResult,omitempty" yaml:"ValidateStaffLoginResult,omitempty"`
-}
-
-// staff_x0020_ServiceSoap implements the Staff_x0020_ServiceSoap interface.
-type staff_x0020_ServiceSoap struct {
+// appointment_x0020_ServiceSoap implements the Appointment_x0020_ServiceSoap interface.
+type appointment_x0020_ServiceSoap struct {
 	cli *soap.Client
 }
 
-// Add or update staff.
-func (p *staff_x0020_ServiceSoap) AddOrUpdateStaff(α *AddOrUpdateStaff) (β *AddOrUpdateStaffResponse, err error) {
+// Adds or updates a list of appointments.
+func (p *appointment_x0020_ServiceSoap) AddOrUpdateAppointments(α *AddOrUpdateAppointments) (β *AddOrUpdateAppointmentsResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
-			M AddOrUpdateStaffResponse `xml:"AddOrUpdateStaffResponse"`
+			M AddOrUpdateAppointmentsResponse `xml:"AddOrUpdateAppointmentsResponse"`
 		}
 	}{}
 	if err = p.cli.RoundTrip(α, &γ); err != nil {
@@ -936,12 +1064,12 @@ func (p *staff_x0020_ServiceSoap) AddOrUpdateStaff(α *AddOrUpdateStaff) (β *Ad
 	return &γ.Body.M, nil
 }
 
-// Gets a list of sales reps based on the requested rep IDs
-func (p *staff_x0020_ServiceSoap) GetSalesReps(α *GetSalesReps) (β *GetSalesRepsResponse, err error) {
+// Adds or updates a list of availabilities.
+func (p *appointment_x0020_ServiceSoap) AddOrUpdateAvailabilities(α *AddOrUpdateAvailabilities) (β *AddOrUpdateAvailabilitiesResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
-			M GetSalesRepsResponse `xml:"GetSalesRepsResponse"`
+			M AddOrUpdateAvailabilitiesResponse `xml:"AddOrUpdateAvailabilitiesResponse"`
 		}
 	}{}
 	if err = p.cli.RoundTrip(α, &γ); err != nil {
@@ -950,12 +1078,12 @@ func (p *staff_x0020_ServiceSoap) GetSalesReps(α *GetSalesReps) (β *GetSalesRe
 	return &γ.Body.M, nil
 }
 
-// Gets a list of staff members.
-func (p *staff_x0020_ServiceSoap) GetStaff(α *GetStaff) (β *GetStaffResponse, err error) {
+// Apply payment to appointment.
+func (p *appointment_x0020_ServiceSoap) ApplyPayment(α *ApplyPayment) (β *ApplyPaymentResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
-			M GetStaffResponse `xml:"GetStaffResponse"`
+			M ApplyPaymentResponse `xml:"ApplyPaymentResponse"`
 		}
 	}{}
 	if err = p.cli.RoundTrip(α, &γ); err != nil {
@@ -964,12 +1092,12 @@ func (p *staff_x0020_ServiceSoap) GetStaff(α *GetStaff) (β *GetStaffResponse, 
 	return &γ.Body.M, nil
 }
 
-// Gets a staff member's image URL if it exists.
-func (p *staff_x0020_ServiceSoap) GetStaffImgURL(α *GetStaffImgURL) (β *GetStaffImgURLResponse, err error) {
+// Gets a list of times that are active for a given program ID.
+func (p *appointment_x0020_ServiceSoap) GetActiveSessionTimes(α *GetActiveSessionTimes) (β *GetActiveSessionTimesResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
-			M GetStaffImgURLResponse `xml:"GetStaffImgURLResponse"`
+			M GetActiveSessionTimesResponse `xml:"GetActiveSessionTimesResponse"`
 		}
 	}{}
 	if err = p.cli.RoundTrip(α, &γ); err != nil {
@@ -978,12 +1106,12 @@ func (p *staff_x0020_ServiceSoap) GetStaffImgURL(α *GetStaffImgURL) (β *GetSta
 	return &γ.Body.M, nil
 }
 
-// Gets a list of staff permissions based on the given staff member.
-func (p *staff_x0020_ServiceSoap) GetStaffPermissions(α *GetStaffPermissions) (β *GetStaffPermissionsResponse, err error) {
+// Gets a list appointment options.
+func (p *appointment_x0020_ServiceSoap) GetAppointmentOptions(α *GetAppointmentOptions) (β *GetAppointmentOptionsResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
-			M GetStaffPermissionsResponse `xml:"GetStaffPermissionsResponse"`
+			M GetAppointmentOptionsResponse `xml:"GetAppointmentOptionsResponse"`
 		}
 	}{}
 	if err = p.cli.RoundTrip(α, &γ); err != nil {
@@ -992,13 +1120,41 @@ func (p *staff_x0020_ServiceSoap) GetStaffPermissions(α *GetStaffPermissions) (
 	return &γ.Body.M, nil
 }
 
-// Validates a username and password. This method returns the staff
-// on success.
-func (p *staff_x0020_ServiceSoap) ValidateStaffLogin(α *ValidateStaffLogin) (β *ValidateStaffLoginResponse, err error) {
+// Gets a list of bookable items.
+func (p *appointment_x0020_ServiceSoap) GetBookableItems(α *GetBookableItems) (β *GetBookableItemsResponse, err error) {
 	γ := struct {
 		XMLName xml.Name `xml:"Envelope"`
 		Body    struct {
-			M ValidateStaffLoginResponse `xml:"ValidateStaffLoginResponse"`
+			M GetBookableItemsResponse `xml:"GetBookableItemsResponse"`
+		}
+	}{}
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
+		return nil, err
+	}
+	return &γ.Body.M, nil
+}
+
+// Gets a list of scheduled items (appointments, availabilities,
+// and unavailabilities).
+func (p *appointment_x0020_ServiceSoap) GetScheduleItems(α *GetScheduleItems) (β *GetScheduleItemsResponse, err error) {
+	γ := struct {
+		XMLName xml.Name `xml:"Envelope"`
+		Body    struct {
+			M GetScheduleItemsResponse `xml:"GetScheduleItemsResponse"`
+		}
+	}{}
+	if err = p.cli.RoundTrip(α, &γ); err != nil {
+		return nil, err
+	}
+	return &γ.Body.M, nil
+}
+
+// Gets a list of appointments that a given staff member is instructing.
+func (p *appointment_x0020_ServiceSoap) GetStaffAppointments(α *GetStaffAppointments) (β *GetStaffAppointmentsResponse, err error) {
+	γ := struct {
+		XMLName xml.Name `xml:"Envelope"`
+		Body    struct {
+			M GetStaffAppointmentsResponse `xml:"GetStaffAppointmentsResponse"`
 		}
 	}{}
 	if err = p.cli.RoundTrip(α, &γ); err != nil {

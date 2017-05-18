@@ -1,4 +1,4 @@
-package contracts
+package saleservice
 
 import (
 	"encoding/xml"

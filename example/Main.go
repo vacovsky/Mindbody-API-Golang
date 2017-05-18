@@ -5,30 +5,34 @@ import (
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/fiorix/wsdl2go/soap"
+	"github.com/vacoj/Mindbody-API-Golang/siteservice"
 )
 
-//	"github.com/vacoj/Mindbody-API-Golang/contracts"
+// var (
+// 	sourceName = "somecreds"
+// 	sourcePass = "somepass"
+// 	site       = -99
+// )
 
 func main() {
 	cli := soap.Client{
 		URL:       "https://api.mindbodyonline.com/0_5/SiteService.asmx",
-		Namespace: Namespace,
+		Namespace: siteservice.Namespace,
 	}
-	conn := NewSite_x0020_ServiceSoap(&cli)
-
-	sourceCreds := &SourceCredentials{
+	conn := siteservice.NewSite_x0020_ServiceSoap(&cli)
+	sourceCreds := &siteservice.SourceCredentials{
 		SourceName: sourceName,
 		Password:   sourcePass,
-		SiteIDs: &ArrayOfInt{
+		SiteIDs: &siteservice.ArrayOfInt{
 			Int: []int{site},
 		},
 	}
 
-	req := &GetSitesRequest{
+	req := &siteservice.GetSitesRequest{
 		SourceCredentials: sourceCreds,
 	}
 
-	reply, err := conn.GetSites(&GetSites{Request: req})
+	reply, err := conn.GetSites(&siteservice.GetSites{Request: req})
 	if err != nil {
 		fmt.Println(err)
 	}
