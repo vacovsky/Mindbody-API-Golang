@@ -10,12 +10,6 @@ import (
 // "../contracts/SiteService"
 // "github.com/fiorix/wsdl2go/soap"
 
-var (
-	sourceName = ""
-	sourcePass = ""
-	site       = -99
-)
-
 func main() {
 	cli := soap.Client{
 		URL:       "https://api.mindbodyonline.com/0_5/SiteService.asmx",
