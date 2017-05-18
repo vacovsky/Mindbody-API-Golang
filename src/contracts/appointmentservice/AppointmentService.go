@@ -1,4 +1,4 @@
-package appointment_x0020_servicesoap
+package mbosoap_contracts
 
 import (
 	"encoding/xml"

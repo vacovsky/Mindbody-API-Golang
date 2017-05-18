@@ -1,4 +1,4 @@
-package site_x0020_servicesoap
+package siteservice
 
 import (
 	"encoding/xml"
