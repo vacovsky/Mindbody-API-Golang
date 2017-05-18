@@ -1,4 +1,4 @@
-package contracts
+package siteservice
 
 import (
 	"encoding/xml"
