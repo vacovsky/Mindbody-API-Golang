@@ -1,4 +1,4 @@
-package mboapicontracts
+package contracts
 
 import (
 	"encoding/xml"
