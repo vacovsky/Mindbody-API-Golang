@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/fiorix/wsdl2go/soap"
 	"github.com/vacoj/Mindbody-API-Golang/siteservice"
+	"github.com/vacoj/wsdl2go/soap"
 )
 
 // var (

@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"reflect"
 
-	"github.com/fiorix/wsdl2go/soap"
+	"github.com/vacoj/wsdl2go/soap"
 )
 
 // Namespace was auto-generated from WSDL.
