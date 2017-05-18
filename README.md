@@ -15,8 +15,8 @@ go get -u "github.com/vacoj/Mindbody-API-Golang/clientservice"
 go get -u "github.com/vacoj/Mindbody-API-Golang/classservice"
 go get -u "github.com/vacoj/Mindbody-API-Golang/saleservice"
 go get -u "github.com/vacoj/Mindbody-API-Golang/appointmentservice"
-go get -u "github.com/fiorix/wsdl2go"
-go get -u "github.com/fiorix/wsdl2go/soap"
+go get -u "github.com/vacoj/wsdl2go"
+go get -u "github.com/vacoj/wsdl2go/soap"
 ```
 
 
