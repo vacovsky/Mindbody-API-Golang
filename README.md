@@ -44,7 +44,7 @@ func makeGetSitesCall() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	spew.Dump(reply.GetSitesResult.Sites.Site[0])
+	fmt.Println(reply.GetSitesResult.Sites.Site[0])
 }
 ```
 the above example is also found <a hred="github.com/vacoj/Mindbody-API-Golang/example/Main.go">example/Main.go</a>
