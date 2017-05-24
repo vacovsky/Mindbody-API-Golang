@@ -20,7 +20,7 @@ go get -u "github.com/vacoj/wsdl2go/soap"
 ```
 
 
-### Follow this pattern in order to make requests and parse calls
+### Follow this pattern to make requests and parse calls
 ``` go
 func makeGetSitesCall() {
 	cli := soap.Client{
