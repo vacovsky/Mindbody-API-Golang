@@ -8,7 +8,6 @@ This is a wrapper around the SOAP API XML contracts available to Mindbody API pa
 
 ### Install packages for each service you wish to use
 ``` bash
-go get -u "github.com/vacoj/Mindbody-API-Golang"
 go get -u "github.com/vacoj/Mindbody-API-Golang/siteservice"
 go get -u "github.com/vacoj/Mindbody-API-Golang/staffservice"
 go get -u "github.com/vacoj/Mindbody-API-Golang/clientservice"
