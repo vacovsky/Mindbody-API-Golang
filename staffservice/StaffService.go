@@ -391,7 +391,7 @@ type Client struct {
 	PhotoURL                         string                     `xml:"PhotoURL,omitempty" json:"PhotoURL,omitempty" yaml:"PhotoURL,omitempty"`
 	IsProspect                       bool                       `xml:"IsProspect,omitempty" json:"IsProspect,omitempty" yaml:"IsProspect,omitempty"`
 	Status                           string                     `xml:"Status,omitempty" json:"Status,omitempty" yaml:"Status,omitempty"`
-	ContactMethod                    *Short                     `xml:"ContactMethod,omitempty" json:"ContactMethod,omitempty" yaml:"ContactMethod,omitempty"`
+	ContactMethod                    int                     `xml:"ContactMethod,omitempty" json:"ContactMethod,omitempty" yaml:"ContactMethod,omitempty"`
 }
 
 // ClientCreditCard was auto-generated from WSDL.
